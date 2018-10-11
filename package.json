@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "start": "sudo node ./bin/www",
-    "exc": "chmod 777 ./sensor/*",
-    "sed": "sed -i 's/\r//' ./sensor/*"
+    "ch": "chmod 777 ./sensors/*",
+    "sed": "sed -i 's/\r//' ./sensors/*"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
