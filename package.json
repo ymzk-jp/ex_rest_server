@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "sudo node ./bin/www"
+    "start": "sudo node ./bin/www",
+    "exc": "chmod 777 ./sensor/*",
+    "sed": "sed -i 's/\r//' ./sensor/*"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
