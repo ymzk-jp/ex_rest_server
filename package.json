@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "sudo node ./bin/www",
-    "ch": "chmod 777 ./sensors/*",
+    "ch": "chmod 777 ./sensors/*; sed -i 's/\r//' ./sensors/*",
     "sed": "sed -i 's/\r//' ./sensors/*"
   },
   "dependencies": {
