@@ -1,32 +1,33 @@
 const express = require('express');
 const router = express.Router();
+const async = require('async');
+const SensorTag = require('sensortag');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
   res.send(process.env);
 });
 
-router.get('/tag', function (req, res, next) {
-  var async = require('async');
-  var SensorTag = require('sensortag');
-  SensorTag.discover(function (sensorTag) {
-    sensorTag.on('disconnect', function () {
+router.get('/tag', (req, res, next)=> {
+  SensorTag.discover((sensorTag)=> {
+    sensorTag.on('disconnect', ()=> {
       process.exit(0);
     });
-    async.series([function (callback) {
+    async.series([(callback)=> {
       sensorTag.connectAndSetUp(callback);
-    }, function (callback) {
+    }, (callback)=> {
       sensorTag.enableIrTemperature(callback);
-    }, function (callback) {
+    }, (callback)=> {
       setTimeout(callback, 2000);
-    }, function (callback) {
-      sensorTag.readIrTemperature(function (error, objectTemperature, ambientTemperature) {
+    }, (callback)=> {
+      sensorTag.readIrTemperature((error, objectTemperature, ambientTemperature)=> {
         console.log("temp: " + ambientTemperature);
+        res.send("temp: " + ambientTemperature);
         callback();
       });
-    }, function (callback) {
+    }, (callback)=> {
       sensorTag.disableIrTemperature(callback);
-    }, function (callback) {
+    }, (callback)=> {
       sensorTag.disconnect(callback);
     }]);
   });
