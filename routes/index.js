@@ -6,4 +6,8 @@ router.get('/', function(req, res, next) {
   res.send(process.env);
 });
 
+router.get('/tag', function(req, res, next) {
+  res.send('tag');
+});
+
 module.exports = router;
